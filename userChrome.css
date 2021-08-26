@@ -1,0 +1,360 @@
+/* Setup:
+
+1. **Enable userChrome.css**:  
+go to about:config and change toolkit.legacyUserProfileCustomizations.stylesheets to "true"
+
+2. **Change about:blank color**:  
+go to about:config again an change browser.display.background_color to "#1b1c1d"
+
+3. **Revert UI back from Proton**:  
+go to about:config for the last time and change browser.proton.enabled to "false"
+
+*/
+
+:root {
+    --navbarWidth: 0px; /* Set width of navbar. Use px or vw. */
+    --animationSpeed: 0.15s;
+
+    /* Browser area before a page starts loading */
+    --browser-before-load-background: #1b1c1d !important;
+
+    /* Toolbars */
+    --toolbar-background: #1b1c1d !important;
+    --toolbar-bgcolor: #1b1c1d !important;
+    --toolbar-bgimage: none !important;
+    --toolbar-color: #adadad !important;
+    --toolbar-border-color: #1f1f1f !important;
+    --inactive-toolbar-background: #1b1c1d !important;
+    --inactive-toolbar-border-color: #1f1f1f !important;
+
+    /* Backbutton */
+    --backbutton-background: #353535 !important;
+
+    --urlbar-box-bgcolor: var(--button-bgcolor) !important;
+    --urlbar-box-hover-bgcolor: var(--button-hover-bgcolor) !important;
+    --urlbar-box-active-bgcolor: var(--button-active-bgcolor) !important;
+
+    --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
+    --toolbar-non-lwt-textcolor: var(--toolbar-color) !important;
+    --toolbar-non-lwt-bgimage: var(var(--toolbar-bgimage)) !important;
+
+    /* Sidebar */
+    --sidebar-background: #1b1c1d !important;
+    --inactive-sidebar-background: #1b1c1d !important;
+
+    /* Popups */
+    --menu-background: #1b1c1d !important;
+    --menu-border-color: #1f1f1f !important;
+    --popover-background: #1b1c1d !important;
+    --popover-border-color: #1f1f1f !important;
+    --popover-button-hover-background: #f8511b !important;
+    --popover-separator-color: #1f1f1f !important;
+
+    --short-notification-background: #0250bb !important;
+    --short-notification-gradient: #9059ff !important;
+
+    /* --button-bgcolor: #1b1c1d !important;
+    --button-hover-bgcolor: #1f1f1f !important;
+    --button-active-bgcolor: #1f1f1f !important;
+    --button-color: #adadad !important; */
+    --button-primary-bgcolor: #f8511b !important;
+    --button-primary-hover-bgcolor: color-mix(in srgb, black 10%, #f8511b) !important;
+    --button-primary-active-bgcolor: color-mix(in srgb, black 20%, #f8511b) !important;
+    --button-primary-color: #adadad !important;
+
+    --buttons-destructive-bgcolor: #e22850 !important;
+    --buttons-destructive-hover-bgcolor: #c50042 !important;
+    --buttons-destructive-active-bgcolor: #810220 !important;
+    --buttons-destructive-color: #fbfbfe !important;
+
+    --checkbox-border-color: var(--input-border-color) !important;
+    --checkbox-unchecked-bgcolor: var(--button-bgcolor) !important;
+    --checkbox-unchecked-hover-bgcolor: var(--button-hover-bgcolor) !important;
+    --checkbox-unchecked-active-bgcolor: var(--button-active-bgcolor) !important;
+    --checkbox-checked-border-color: transparent !important;
+    --checkbox-checked-bgcolor: var(--button-primary-bgcolor) !important;
+    --checkbox-checked-color: var(--button-primary-color) !important;
+    --checkbox-checked-hover-bgcolor: var(--button-primary-hover-bgcolor) !important;
+    --checkbox-checked-active-bgcolor: var(--button-primary-active-bgcolor) !important;
+
+    --autocomplete-popup-hover-background: var(--arrowpanel-dimmed) !important;
+    --autocomplete-popup-separator-color: color-mix(in srgb, currentColor 14%, transparent) !important;
+
+    --tabpanel-background-color: #1b1c1d !important;
+
+    --panel-separator-color: ThreeDShadow !important;
+
+    --tabs-border-color: #1b1c1d !important;
+
+    --chrome-content-separator-color: ThreeDShadow !important;
+
+    /* --toolbarbutton-hover-background: var(--button-hover-bgcolor) !important;
+    --toolbarbutton-active-background: var(--button-active-bgcolor) !important; */
+
+    --toolbarseparator-color: color-mix(in srgb, currentColor 20%, transparent) !important;
+
+    --cfr-animation-duration: 0.35s;
+    --cfr-button-addons-icon: url(chrome://activity-stream/content/data/content/assets/glyph-webextension-16.svg);
+    --cfr-button-features-icon: url(chrome://activity-stream/content/data/content/assets/glyph-cfr-feature-16.svg);
+    --cfr-button-highlights-icon: url(chrome://activity-stream/content/data/content/assets/glyph-highlights-16.svg);
+    --cfr-active-color: var(--button-primary-bgcolor) !important;
+}
+
+#nav-bar {
+    /* border-top-style: solid !important;
+    border-top-width: 1px !important; */
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+
+    border-bottom-color: transparent !important;
+}
+
+/* Autohide toolbar */
+#navigator-toolbox:focus-within > #nav-bar,
+#navigator-toolbox:hover > #nav-bar {
+    margin-top: 0;
+    margin-bottom: var(--navbar-margin);
+    z-index: 100;
+    opacity: 1;
+
+    /* border-top-color: #3c3c3c !important; */
+    border-bottom-color: #3c3c3c !important;
+}
+
+#nav-bar,
+#navigator-toolbox {
+    background-color: #1b1c1d;
+    color: #adadad;
+}
+
+#nav-bar:not([customizing]) {
+    --navbar-margin: -41px;
+    margin-top: var(--navbar-margin);
+    margin-bottom: 0;
+    z-index: -100;
+    transition: all 0.3s ease !important;
+    opacity: 0;
+}
+
+/* Animation speed */
+toolbarbutton,
+.toolbarbutton-icon,
+.subviewbutton,
+.urlbar-input-box,
+#identity-box,
+#tracking-protection-icon-container,
+[anonid="urlbar-go-button"],
+.urlbar-icon-wrapper,
+#tracking-protection-icon,
+#identity-box image,
+stack,
+vbox,
+tab:not(:active) .tab-background,
+tab:not([beforeselected-visible])::after,
+tab[visuallyselected] .tab-background::before,
+tab[visuallyselected] .tab-background::before,
+.tab-close-button {
+    animation: var(--animationSpeed) !important;
+}
+
+/* Color titlebar */
+#titlebar > .browser-toolbar {
+    background: #1b1c1d;
+    border-bottom-width: 0 !important;
+}
+
+/* Cool font on tabs */
+tab {
+    font-size: 14px !important;
+    font-family: monospace !important;
+}
+
+/* Remove gap between pinned and unpineed tabs */
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 0 !important;
+}
+
+/* Reduce tab height */
+.tabbrowser-tab {
+    margin-top: -5.5px !important;
+    margin-bottom: -5px !important;
+}
+
+/* Remove gap between tabs */
+.tabbrowser-tab {
+    padding-inline: 0px !important;
+}
+
+/* Hide close button */
+.tabbrowser-tab .tab-close-button {
+    visibility: collapse !important;
+}
+
+/* Bold text on selected tabs */
+.tabbrowser-tab[selected] .tab-label {
+    color: #fff !important;
+    font-weight: bold !important;
+}
+
+/* Other background-color on highlighted tabs */
+.tabbrowser-tab[selected] .tab-content {
+    background: #f8511b !important;
+}
+
+/* Default textcolor */
+.tabbrowser-tab:not([selected]) .tab-label {
+    color: #adadad !important;
+}
+
+/* Default background */
+.tabbrowser-tab:not([selected]) .tab-content {
+    background: #1b1c1d;
+}
+
+/*
+ * Remove "Send Page to Device", "Send Link to Device", 
+ * "Send Tab to Device" from context menu.
+ *
+ * Contributor(s): PilzAdam
+ */
+
+#context-sendpagetodevice,
+#context-sep-sendpagetodevice,
+#context-sendlinktodevice,
+#context-sep-sendlinktodevice,
+#context_sendTabToDevice,
+#context_sendTabToDevice_separator {
+    display: none !important;
+}
+
+/*
+ * Compact findbar at the top of the window
+ *
+ * Contributor(s): Madis0
+ */
+
+.browserContainer > findbar {
+    -moz-box-ordinal-group: 0;
+    position: fixed !important;
+    right: 1em;
+    border: 0px solid threedshadow !important;
+
+    background-color: #1b1c1d !important;
+    color: #adadad !important;
+
+    /* Hide the "border" at the top by removing the box-shadow and background-image */
+    border-top: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+
+    transition: 400ms !important;
+    z-index: 0 !important;
+
+    padding-block: 1px;
+}
+
+.findbar-find-previous,
+.findbar-find-next {
+    background-color: none !important;
+    border: 1px solid #1f1f1f !important;
+    padding: 3px !important;
+}
+
+.findbar-find-previous[disabled="true"] > .toolbarbutton-icon,
+.findbar-find-next[disabled="true"] > .toolbarbutton-icon {
+    opacity: 100 !important;
+}
+
+.findbar-textbox {
+    padding-inline-start: 3px !important;
+}
+
+/* Margin from top when hidden (necessary for the transition to work) */
+/*findbar[hidden]{ margin-top: -2em !important; }*/
+
+/* Aligns the close button to the center */
+.findbar-closebutton {
+    margin-inline-start: 0.5em !important;
+    vertical-align: middle !important;
+    margin-bottom: 0.25em !important;
+    height: inherit !important;
+}
+
+/* (Background)color for the URL bar */
+#urlbar * {
+    color: #adadad !important;
+    fill: #adadad !important;
+}
+
+#urlbar-background {
+    border: 1px solid #3c3c3c !important;
+}
+
+#urlbar:not([breakout-extend]) #urlbar-background {
+    border: none !important;
+    border-left: 1px solid #3c3c3c !important;
+    border-right: 1px solid #3c3c3c !important;
+    border-radius: 0px !important;
+}
+
+#urlbar-background {
+    background-color: #1b1c1d !important;
+    color: #adadad !important;
+}
+
+/* Loading tabs */
+.tab-throbber[busy]::before {
+    fill: white !important;
+}
+.tab-throbber[progress]::before {
+    fill: white !important;
+}
+
+/* Remove items from context menu */
+#context-sendimage,
+#context-sep-setbackground,
+#context-setDesktopBackground,
+#context-inspect-a11y,
+#context-pocket {
+    display: none !important;
+}
+
+/* Hides tabs if only one open */
+/* #tabbrowser-tabs tab:only-of-type {
+    display: none !important;
+} */
+
+/* Remove UGLY white line */
+#navigator-toolbox {
+    border-bottom: none !important;
+    background-color: #1b1c1d !important;
+}
+
+/* URL input bar */
+
+/* Remove favicons */
+/* .urlbarView-favicon {
+    display: none !important;
+} */
+
+/* Remove drag space */
+.titlebar-spacer[type="pre-tabs"],
+.titlebar-spacer[type="post-tabs"] {
+    display: none !important;
+    width: 0 !important;
+}
+
+/* Hide new tab button */
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+    display: none !important;
+}
+
+/* About:blank page (only works in older versions) */
+@namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document url("about:blank") {
+    * {
+        background-color: #1b1c1d !important;
+        color: #adadad !important;
+    }
+}

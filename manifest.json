@@ -1,22 +1,29 @@
 {
   "manifest_version": 2,
-  "version": "1.0",
+  "version": "1.1",
   "name": "Frontend Delight",
   "theme": {
     "images": {},
     "properties": {},
     "colors": {
       "toolbar": "rgb(27, 28, 29)",
-      "toolbar_text": "rgb(173, 173, 173)",
+      "toolbar_text": "rgb(255, 255, 255)",
       "frame": "rgb(0, 0, 0)",
-      "tab_background_text": "rgb(255, 255, 255)",
+      "tab_background_text": "rgb(173, 173, 173)",
       "toolbar_field": "rgb(51, 51, 51)",
       "toolbar_field_text": "rgb(173, 173, 173)",
       "tab_line": "rgb(248, 81, 27)",
-      "popup": "rgb(255, 255, 255)",
-      "popup_text": "rgb(27, 28, 29)",
+      "popup": "rgb(27, 28, 29)",
+      "popup_text": "rgb(173, 173, 173)",
+      "button_background_active": "rgb(248, 81, 27)",
+      "button_background_hover": "rgb(32, 33, 34)",
+      "frame_inactive": "rgb(36, 36, 36)",
       "icons_attention": "rgba(248, 81, 27, 0.76)",
       "icons": "rgb(173, 173, 173)",
+      "ntp_background": "rgb(27, 28, 29)",
+      "ntp_text": "rgb(173, 173, 173)",
+      "popup_border": "rgb(248, 81, 27)",
+      "popup_highlight_text": "rgb(255, 255, 255)",
       "tab_loading": "rgb(248, 81, 27)"
     }
   }

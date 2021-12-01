@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "1.1",
+  "version": "1.2",
   "name": "Frontend Delight",
   "theme": {
     "images": {},
@@ -15,15 +15,16 @@
       "tab_line": "rgb(248, 81, 27)",
       "popup": "rgb(27, 28, 29)",
       "popup_text": "rgb(173, 173, 173)",
-      "button_background_active": "rgb(248, 81, 27)",
+      "button_background_active": "rgba(55, 55, 55, 0.76)",
       "button_background_hover": "rgb(32, 33, 34)",
       "frame_inactive": "rgb(36, 36, 36)",
       "icons_attention": "rgba(248, 81, 27, 0.76)",
       "icons": "rgb(173, 173, 173)",
       "ntp_background": "rgb(27, 28, 29)",
       "ntp_text": "rgb(173, 173, 173)",
-      "popup_border": "rgb(248, 81, 27)",
+      "popup_border": "rgba(55, 55, 55, 0.76)",
       "popup_highlight_text": "rgb(255, 255, 255)",
+      "toolbar_field_border_focus": "rgba(248, 81, 27, 0.76)",
       "tab_loading": "rgb(248, 81, 27)"
     }
   }
